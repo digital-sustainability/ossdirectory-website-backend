@@ -1,0 +1,12 @@
+type RSS implements Base
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    date : DateTime
+    imageUrl : String
+    url : String
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}

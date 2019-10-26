@@ -1,0 +1,59 @@
+type News implements Base & Multilingual
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    datetime : DateTime
+    imageUrl : String
+    keywords : String
+    html : String
+    file : String
+
+    translations: [NewsTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+}
+
+type NewsTranslation implements Base & Translation 
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    imageCaption : String
+    short : String
+    description : String
+    keywords : String
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}
+
+type NewsFeed implements Base
+{
+    sequence: String
+    deleted: Boolean
+
+    date : DateTime
+    description : String
+    url : String
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}
+
+type NewsCategory implements Base & Multilingual 
+{
+    sequence: String
+    deleted: Boolean
+
+    translations: [NewsCategoryTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+}
+
+type NewsCategoryTranslation implements Base & Translation
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    description : String
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}

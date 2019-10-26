@@ -1,0 +1,25 @@
+interface Base {
+    sequence: String
+    deleted: Boolean
+}
+
+interface Multilingual {
+    translations: [Translation]
+}
+
+interface Translation {
+    language: Language
+}
+
+type Language implements Base 
+{
+    sequence: String
+    short: String!
+    deleted: Boolean
+}
+
+type Query {
+    findBySequence(sequence: String!): String
+}
+
+scalar DateTime

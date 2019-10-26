@@ -1,0 +1,130 @@
+type Client implements Base & Organisation 
+{
+    sequence: String
+    deleted: Boolean
+
+    title: String
+    imageUrl: String
+    url: String
+
+    translations: [ClientTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+    address : Address @relation(name: "ADDRESS", direction: "OUT")    
+    industry : Industry @relation(name : "WORKS_IN", direction : "OUT")
+    successStories : [SuccessStory!] @relation(name : "COMMISSIONED", direction : "OUT")
+    communities : [ClientMember]
+
+}
+
+type ClientTranslation implements Base & Translation 
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    description : String
+    claim : String
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}
+
+type ClientMember @relation(name: "PART_OF")
+{
+    to: [Community]
+    from : [Client]
+    confirmed : Boolean
+    level : String   
+}
+
+type Industry implements Base & Multilingual 
+{
+    sequence: String
+    deleted: Boolean
+
+    translations: [IndustryTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+    clients : [Client] @relation(name : "WORKS_IN", direction : "IN")
+}
+
+type IndustryTranslation implements Base & Translation 
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    description : String
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}
+
+type Mutation {
+
+    CreateClient(
+        title: String
+        imageUrl: String
+        url: String
+    ) 
+    : Client
+        @translations 
+        @createdBy
+        @sequence
+
+    CreateClientTranslation(
+        title : String
+        description : String
+        claim : String
+    ) 
+    : ClientTranslation
+        @createdBy
+        @sequence
+
+    CreateIndustry
+    : Industry
+        @translations 
+        @createdBy
+        @sequence
+    
+    CreateIndustryTranslation(
+        title : String
+        description : String
+    )
+    : IndustryTranslation
+        @translations 
+        @createdBy
+        @sequence
+
+    UpdateClient(
+        sequence: String!
+        title: String
+        imageUrl: String
+        url: String
+    ) 
+    : Client
+        @translations 
+        @updatedBy
+
+    UpdateClientTranslation(
+        sequence: String!
+        title : String
+        description : String
+        claim : String
+    ) 
+    : ClientTranslation
+        @updatedBy
+
+    UpdateIndustry(
+        sequence: String!
+    )
+    : Industry
+        @translations 
+        @updatedBy
+    
+    UpdateIndustryTranslation(
+        sequence: String!
+        title : String
+        description : String
+    )
+    : IndustryTranslation
+        @translations 
+        @updatedBy
+
+    
+}

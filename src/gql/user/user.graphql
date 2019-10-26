@@ -1,0 +1,8 @@
+type User {
+    sequence: String
+
+    firstname: String
+    lastname: String
+    email: String
+    password: String
+}

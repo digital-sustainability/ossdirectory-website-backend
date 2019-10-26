@@ -1,0 +1,24 @@
+type Job implements Base & Multilingual
+{
+    sequence: String
+    deleted: Boolean
+
+    location : String
+    starttime : DateTime
+    endtime : DateTime
+    date : DateTime
+    url : String
+
+    translations: [JobTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+}
+
+type JobTranslation implements Base & Translation 
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    description : String
+    
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}

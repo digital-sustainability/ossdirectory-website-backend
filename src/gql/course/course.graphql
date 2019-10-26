@@ -1,0 +1,23 @@
+type Course implements Base & Multilingual
+{
+    sequence: String
+    deleted: Boolean
+
+    location : String
+    url : String
+    start : DateTime
+    stop : DateTime
+
+    translations: [CourseTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+}
+
+type CourseTranslation implements Base & Translation
+{
+    sequence: String
+    deleted: Boolean
+    
+    title : String
+    description : String
+    
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}

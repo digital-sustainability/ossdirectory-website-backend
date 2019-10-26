@@ -1,0 +1,46 @@
+type Product implements Base & Multilingual
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    url : String
+    links : [String]
+    imageUrl : String
+
+    translations: [ProductTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+}
+
+type ProductTranslation implements Base & Translation
+{
+    sequence: String
+    deleted: Boolean
+
+    claim : String
+    title : String
+    description : String 
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}
+
+type ProductCategory implements Base & Multilingual 
+{
+    sequence: String
+    deleted: Boolean
+
+    group : String
+
+    translations: [ProductCategoryTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+    products : [Product!]! @relation(name: "IN_CATEGORY", direction : "IN")
+}
+
+type ProductCategoryTranslation implements Base & Translation @additionalLabels(labels: ["Translation"]) 
+{
+    sequence : String
+    deleted : Boolean
+
+    title : String
+    description : String 
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}

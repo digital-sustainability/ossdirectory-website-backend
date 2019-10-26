@@ -1,0 +1,28 @@
+type SuccessStory implements Base & Multilingual
+{
+    sequence: String
+    deleted: Boolean
+
+    imageUrl : String
+
+    client : Client @relation(name : "COMMISSIONED", direction : "IN")
+    vendor : Vendor @relation(name : "REALISED", direction : "IN")
+    products : [Product!] @relation(name : "REALISED_WITH", direction : "OUT")
+    industry : Industry @relation(name : "FOR_INDUSTRY", direction : "OUT")
+    translations: [SuccessStoryTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+}
+
+type SuccessStoryTranslation implements Base & Translation 
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    lead : String
+    base : String
+    goal : String 
+    proposal : String
+    outcome : String 
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}

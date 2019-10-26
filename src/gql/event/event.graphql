@@ -1,0 +1,25 @@
+type Event implements Base & Multilingual
+{
+    sequence: String
+    deleted: Boolean
+
+    email: String
+    timestamp: String
+
+    translations(short: String): [EventTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+}
+
+type EventTranslation implements Base & Translation
+{
+    sequence: String
+    deleted: Boolean
+
+    title: String
+    description: String
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}
+
+type Mutation {
+    CreateEvent: Event @translations @sequence @createdBy 
+}

@@ -1,0 +1,7 @@
+interface Organisation {
+    title: String
+    imageUrl: String
+    url: String
+
+    address: Address @relation(name: "ADDRESS", direction: "OUT")
+}
