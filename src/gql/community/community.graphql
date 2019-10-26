@@ -28,7 +28,9 @@ type CommunityTranslation implements Base & Translation
 type Mutation {
 
     CreateCommunity(
-
+        title: String
+        imageUrl: String
+        url: String
     )
     : Community
         @translations

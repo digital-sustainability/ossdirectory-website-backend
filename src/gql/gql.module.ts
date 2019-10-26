@@ -12,6 +12,10 @@ import { SequenceDirective } from "./directives/sequence-directive";
 import { CreatedByDirective } from "./directives/created-by-directive";
 import { UpdatedByDirective } from "./directives/updated-by-directive";
 
+/**
+ * https://stackoverflow.com/questions/53544876/how-to-integrate-neo4j-database-nestjs-framework-and-graphql
+ */
+
 @Module({
     imports: [
         GraphQLModule.forRoot({
