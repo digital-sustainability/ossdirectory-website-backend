@@ -38,6 +38,8 @@ import { config } from "../config/config";
 
                 return s;
             },
+            playground: true,
+            introspection: true,
             context: ({ req,  res }) => {
                 return {
                     driver: v1.driver(
