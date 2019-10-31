@@ -11,6 +11,7 @@ import { mergeSchemas } from 'graphql-tools';
 import { SequenceDirective } from "./directives/sequence-directive";
 import { CreatedByDirective } from "./directives/created-by-directive";
 import { UpdatedByDirective } from "./directives/updated-by-directive";
+import { config } from "../config/config";
 
 /**
  * https://stackoverflow.com/questions/53544876/how-to-integrate-neo4j-database-nestjs-framework-and-graphql
@@ -18,7 +19,8 @@ import { UpdatedByDirective } from "./directives/updated-by-directive";
 
 @Module({
     imports: [
-        GraphQLModule.forRoot({
+        GraphQLModule.forRootAsync({
+            useFactory: () => ({
             typePaths: ['./**/*.graphql'],
             transformSchema: (schema) => {
 
@@ -39,8 +41,8 @@ import { UpdatedByDirective } from "./directives/updated-by-directive";
             context: ({ req,  res }) => {
                 return {
                     driver: v1.driver(
-                        'bolt://neo4j.digisus.ch',
-                        v1.auth.basic('neo4j', 'OpenSource4Ev3r'),
+                        config.neo4j.host,
+                        v1.auth.basic(config.neo4j.user, config.neo4j.password),
                     ),
                     req,
                     res,
@@ -49,6 +51,7 @@ import { UpdatedByDirective } from "./directives/updated-by-directive";
                     updatedIDs: [],
                 };
             },
+        }),
         }),
     ],
     providers: [
