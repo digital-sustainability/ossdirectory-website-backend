@@ -5,6 +5,8 @@ import { GqlModule } from './gql/gql.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AngularModule } from './angular/angular.module';
+import { ConfigService } from './config/config.service';
+import { ConfigModule } from './config/config.module';
 
 @Module({
   imports: [
@@ -12,6 +14,7 @@ import { AngularModule } from './angular/angular.module';
       AuthModule,
       UsersModule,
       AngularModule,
+      ConfigModule,
     ],
   controllers: [AppController],
   providers: [AppService],

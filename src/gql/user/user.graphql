@@ -1,4 +1,5 @@
-type User {
+type User 
+{
     sequence: String
 
     firstname: String
