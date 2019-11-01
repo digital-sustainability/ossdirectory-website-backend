@@ -7,7 +7,7 @@ type Client implements Base & Organisation
     imageUrl: String
     url: String
 
-    translations: [ClientTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+    translations: [OrganisationTranslation] @relation(name: "CLIENT_TRANSLATION", direction: "OUT")
     address : Address @relation(name: "ADDRESS", direction: "OUT")    
     industry : Industry @relation(name : "WORKS_IN", direction : "OUT")
     successStories : [SuccessStory!] @relation(name : "COMMISSIONED", direction : "OUT")

@@ -8,7 +8,7 @@ type Product implements Base & Multilingual
     links : [String]
     imageUrl : String
 
-    translations: [ProductTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+    translations: [ProductTranslation] @relation(name: "PRODUCT_TRANSLATION", direction: "OUT")
 }
 
 type ProductTranslation implements Base & Translation

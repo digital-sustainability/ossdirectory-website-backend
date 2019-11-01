@@ -7,7 +7,7 @@ type Vendor implements Base & Multilingual & Organisation
     imageUrl: String
     url: String
 
-    translations: [VendorTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+    translations: [OrganisationTranslation] @relation(name: "VENDOR_TRANSLATION", direction: "OUT")
     address : Address @relation(name: "ADDRESS", direction: "OUT")
     products : [Provides!]! 
     successStories : [SuccessStory!] @relation(name : "REALISED", direction : "OUT")
