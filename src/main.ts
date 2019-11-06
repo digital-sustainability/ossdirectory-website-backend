@@ -5,6 +5,8 @@ import * as csurf from 'csurf';
 import * as rateLimit from 'express-rate-limit';
 import * as cookieParser from 'cookie-parser';
 import { config } from './config/config';
+import passport = require('passport');
+import session = require('express-session');
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -14,6 +16,16 @@ async function bootstrap() {
     app.enableCors();
 
     app.use(cookieParser());
+    app.use(session({ 
+        secret: 'olhosvermelhoseasenhaclassica', 
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: false },
+        maxAge: 60000,
+    }));
+
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     // app.use(csurf({ cookie: true }));
 

@@ -7,3 +7,14 @@ type User
     email: String
     password: String
 }
+
+type Query
+{
+    login(email: String!, password: String!): User
+    
+}
+
+type Mutation
+{
+    CreateUser(email: String!, password: String!): User @sequence
+}
