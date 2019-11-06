@@ -7,6 +7,9 @@ type Client implements Base & Organisation
     imageUrl: String
     url: String
 
+    created_at: DateTime
+    updated_at: DateTime
+
     translations: [OrganisationTranslation] @relation(name: "CLIENT_TRANSLATION", direction: "OUT")
     address : Address @relation(name: "ADDRESS", direction: "OUT")    
     industry : Industry @relation(name : "WORKS_IN", direction : "OUT")

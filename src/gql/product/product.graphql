@@ -8,6 +8,9 @@ type Product implements Base & Multilingual
     links : [String]
     imageUrl : String
 
+    created_at: DateTime
+    updated_at: DateTime
+
     translations: [ProductTranslation] @relation(name: "PRODUCT_TRANSLATION", direction: "OUT")
     vendors : [Provides]
 }
