@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as minio from 'minio';
+import { config } from '../config/config';
 
 @Injectable()
 export class UploadService {
@@ -8,18 +9,23 @@ export class UploadService {
 
     constructor() {
         this.client = new minio.Client({
-            endPoint: 'play.min.io',
-            port: 9000,
+            endPoint: config.minio.host,
+            port: config.minio.port,
             useSSL: true,
-            accessKey: 'Q3AM3UQ867SPQQA43P2F',
-            secretKey: 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG'
+            accessKey: config.minio.key,
+            secretKey: config.minio.secret,
         });
     }
 
-    public uploadFile(fileBuffer: Buffer) {
-
-        this.client.putObject('', '', fileBuffer, (err, etag) => {
-
+    public uploadFile(fileBuffer: Buffer, name) {
+        return new Promise((resolve, reject) => {
+            this.client.putObject(config.minio.bucket, name, fileBuffer, (err, etag) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(etag);
+                }
+            });
         });
     }
 }
