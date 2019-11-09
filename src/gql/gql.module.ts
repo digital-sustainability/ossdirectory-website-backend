@@ -12,6 +12,8 @@ import { SequenceDirective } from "./directives/sequence-directive";
 import { CreatedByDirective } from "./directives/created-by-directive";
 import { UpdatedByDirective } from "./directives/updated-by-directive";
 import { config } from "../config/config";
+import { Neo4jModule } from "../neo4j/neo4j.module";
+import { UsersModule } from "../users/users.module";
 
 /**
  * https://stackoverflow.com/questions/53544876/how-to-integrate-neo4j-database-nestjs-framework-and-graphql
@@ -19,6 +21,8 @@ import { config } from "../config/config";
 
 @Module({
     imports: [
+        Neo4jModule,
+        UsersModule,
         GraphQLModule.forRootAsync({
             useFactory: () => ({
             typePaths: ['./**/*.graphql'],
@@ -34,6 +38,7 @@ import { config } from "../config/config";
                         createdBy: CreatedByDirective,
                         updatedBy: UpdatedByDirective,
                     },
+
                 });
 
                 return s;
@@ -45,7 +50,7 @@ import { config } from "../config/config";
                     driver: v1.driver(
                         config.neo4j.host,
                         v1.auth.basic(config.neo4j.user, config.neo4j.password),
-                    ),
+                    ), // TODO put this in service such that not every time new driver is generated
                     req,
                     res,
                     ids: [],

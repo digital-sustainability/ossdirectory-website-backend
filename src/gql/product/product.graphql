@@ -12,6 +12,7 @@ type Product implements Base & Multilingual
     updated_at: DateTime
 
     translations: [ProductTranslation] @relation(name: "PRODUCT_TRANSLATION", direction: "OUT")
+    successStories : [SuccessStory!] @relation(name : "REALISED_WITH", direction : "IN")
     vendors : [Provides]
 }
 
