@@ -114,6 +114,8 @@ THE SOFTWARE.
 
 @angular/material/button
 
+@angular/material/card
+
 @angular/material/core
 
 @angular/material/dialog
@@ -185,6 +187,12 @@ Trademarks
 
 **CKEditor** is a trademark of [CKSource](http://cksource.com) Frederico Knabben. All other brand and product names are trademarks, registered trademarks or service marks of their respective holders.
 
+
+@ngx-translate/core
+MIT
+
+@ngx-translate/http-loader
+MIT
 
 @wry/context
 MIT
