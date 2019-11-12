@@ -8,6 +8,7 @@ import { AngularModule } from './angular/angular.module';
 import { ConfigModule } from './config/config.module';
 import { Neo4jService } from './neo4j/neo4j.service';
 import { Neo4jModule } from './neo4j/neo4j.module';
+import { RssController } from './rss/rss.controller';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { Neo4jModule } from './neo4j/neo4j.module';
       ConfigModule,
       Neo4jModule,
     ],
-  controllers: [AppController],
+  controllers: [AppController, RssController],
   providers: [AppService, Neo4jService],
 })
 export class AppModule {}
