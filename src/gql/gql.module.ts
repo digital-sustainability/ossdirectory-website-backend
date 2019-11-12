@@ -14,6 +14,7 @@ import { UpdatedByDirective } from "./directives/updated-by-directive";
 import { config } from "../config/config";
 import { Neo4jModule } from "../neo4j/neo4j.module";
 import { UsersModule } from "../users/users.module";
+import { AddressDirective } from './directives/address-directive';
 
 /**
  * https://stackoverflow.com/questions/53544876/how-to-integrate-neo4j-database-nestjs-framework-and-graphql
@@ -34,6 +35,7 @@ import { UsersModule } from "../users/users.module";
                     mergeDirectives: true,
                     schemaDirectives: {
                         translations: TranslationsDirective,
+                        address: AddressDirective,
                         sequence: SequenceDirective,
                         createdBy: CreatedByDirective,
                         updatedBy: UpdatedByDirective,

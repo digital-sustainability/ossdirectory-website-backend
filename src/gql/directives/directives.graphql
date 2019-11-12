@@ -2,6 +2,7 @@ directive @translations(lang: [String]) on FIELD_DEFINITION
 directive @createdBy on FIELD_DEFINITION
 directive @updatedBy on FIELD_DEFINITION
 directive @sequence on FIELD_DEFINITION
+directive @address on FIELD_DEFINITION
 
 directive @relation(name: String, direction: String, from: String, to: String) on FIELD_DEFINITION | OBJECT
 directive @additionalLabels(labels: [String]) on OBJECT

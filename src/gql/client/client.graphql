@@ -1,4 +1,4 @@
-type Client implements Base & Organisation 
+type Client implements Base & Organisation
 {
     sequence: String
     deleted: Boolean
@@ -10,15 +10,15 @@ type Client implements Base & Organisation
     created_at: DateTime
     updated_at: DateTime
 
-    translations: [OrganisationTranslation] @relation(name: "CLIENT_TRANSLATION", direction: "OUT")
-    address : Address @relation(name: "ADDRESS", direction: "OUT")    
+    translations: [ClientTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+    address : Address @relation(name: "ADDRESS", direction: "OUT")
     industry : Industry @relation(name : "WORKS_IN", direction : "OUT")
     successStories : [SuccessStory!] @relation(name : "COMMISSIONED", direction : "OUT")
     communities : [ClientMember]
 
 }
 
-type ClientTranslation implements Base & Translation 
+type ClientTranslation implements Base & Translation
 {
     sequence: String
     deleted: Boolean
@@ -35,10 +35,10 @@ type ClientMember @relation(name: "PART_OF")
     to: [Community]
     from : [Client]
     confirmed : Boolean
-    level : String   
+    level : String
 }
 
-type Industry implements Base & Multilingual 
+type Industry implements Base & Multilingual
 {
     sequence: String
     deleted: Boolean
@@ -47,7 +47,7 @@ type Industry implements Base & Multilingual
     clients : [Client] @relation(name : "WORKS_IN", direction : "IN")
 }
 
-type IndustryTranslation implements Base & Translation 
+type IndustryTranslation implements Base & Translation
 {
     sequence: String
     deleted: Boolean
@@ -64,70 +64,69 @@ type Mutation {
         title: String
         imageUrl: String
         url: String
-    ) 
+    )
     : Client
-        @translations 
-        @createdBy
-        @sequence
+    @translations
+    @address
+    @createdBy
+    @sequence
 
     CreateClientTranslation(
         title : String
         description : String
         claim : String
-    ) 
+    )
     : ClientTranslation
-        @createdBy
-        @sequence
+    @createdBy
+    @sequence
 
     CreateIndustry
     : Industry
-        @translations 
-        @createdBy
-        @sequence
-    
+    @translations
+    @createdBy
+    @sequence
+
     CreateIndustryTranslation(
         title : String
         description : String
     )
     : IndustryTranslation
-        @translations 
-        @createdBy
-        @sequence
+    @translations
+    @createdBy
+    @sequence
 
     UpdateClient(
         sequence: String!
         title: String
         imageUrl: String
         url: String
-    ) 
+    )
     : Client
-        @translations 
-        @updatedBy
+    @translations
+    @updatedBy
 
     UpdateClientTranslation(
         sequence: String!
         title : String
         description : String
         claim : String
-    ) 
+    )
     : ClientTranslation
-        @updatedBy
+    @updatedBy
 
     UpdateIndustry(
         sequence: String!
     )
     : Industry
-        @translations 
-        @updatedBy
-    
+    @translations
+    @updatedBy
+
     UpdateIndustryTranslation(
         sequence: String!
         title : String
         description : String
     )
     : IndustryTranslation
-        @translations 
-        @updatedBy
-
-    
+    @translations
+    @updatedBy
 }

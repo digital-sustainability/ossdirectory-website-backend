@@ -10,7 +10,7 @@ type Vendor implements Base & Multilingual & Organisation
     created_at: DateTime
     updated_at: DateTime
 
-    translations: [OrganisationTranslation] @relation(name: "VENDOR_TRANSLATION", direction: "OUT")
+    translations: [VendorTranslation] @relation(name: "TRANSLATION", direction: "OUT")
     address : Address @relation(name: "ADDRESS", direction: "OUT")
     products : [Provides!]! 
     successStories : [SuccessStory!] @relation(name : "REALISED", direction : "OUT")
@@ -41,4 +41,46 @@ type VendorMember @relation(name: "PART_OF") {
     from : [Vendor]
     confirmed : Boolean 
     level : String
+}
+
+type Mutation {
+
+    CreateVendor(
+        title: String
+        imageUrl: String
+        url: String
+    )
+    : Vendor
+    @translations
+    @address
+    @createdBy
+    @sequence
+
+    CreateVendorTranslation(
+        title : String
+        description : String
+        claim : String
+    )
+    : VendorTranslation
+    @createdBy
+    @sequence
+
+    UpdateVendor(
+        sequence: String!
+        title: String
+        imageUrl: String
+        url: String
+    )
+    : Vendor
+    @translations
+    @updatedBy
+
+    UpdateVendorTranslation(
+        sequence: String!
+        title : String
+        description : String
+        claim : String
+    )
+    : VendorTranslation
+    @updatedBy
 }

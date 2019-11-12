@@ -12,7 +12,7 @@ type SuccessStory implements Base & Multilingual
     vendor : Vendor @relation(name : "REALISED", direction : "IN")
     products : [Product!] @relation(name : "REALISED_WITH", direction : "OUT")
     industry : Industry @relation(name : "FOR_INDUSTRY", direction : "OUT")
-    translations: [SuccessStoryTranslation] @relation(name: "SUCCESS_STORY_TRANSLATION", direction: "OUT")
+    translations: [SuccessStoryTranslation] @relation(name: "TRANSLATION", direction: "OUT")
 }
 
 type SuccessStoryTranslation implements Base & Translation 
@@ -29,4 +29,53 @@ type SuccessStoryTranslation implements Base & Translation
     description : String
 
     language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}
+
+type Mutation {
+
+    CreateSuccessStory(
+        imageUrl: String
+        url: String
+    )
+    : SuccessStory
+    @translations
+    @createdBy
+    @sequence
+
+    CreateSuccessStoryTranslation(
+        title : String
+        lead : String
+        base : String
+        goal : String
+        proposal : String
+        outcome : String
+        description : String
+        claim : String
+    )
+    : SuccessStoryTranslation
+    @createdBy
+    @sequence
+
+    UpdateSuccessStory(
+        sequence: String!
+        imageUrl: String
+        url: String
+    )
+    : SuccessStory
+    @translations
+    @updatedBy
+
+    UpdateSuccessStoryTranslation(
+        sequence: String!
+        title : String
+        lead : String
+        base : String
+        goal : String
+        proposal : String
+        outcome : String
+        description : String
+        claim : String
+    )
+    : SuccessStoryTranslation
+    @updatedBy
 }
