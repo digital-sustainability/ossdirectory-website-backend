@@ -1,9 +1,11 @@
 type SuccessStory implements Base & Multilingual
 {
     sequence: String
+    uid: String
     deleted: Boolean
 
-    imageUrl : String
+    logo : String
+    imageUrl: String
 
     created_at: DateTime
     updated_at: DateTime

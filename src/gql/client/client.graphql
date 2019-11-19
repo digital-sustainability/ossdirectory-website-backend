@@ -1,10 +1,12 @@
 type Client implements Base & Organisation
 {
     sequence: String
+    uid: String
     deleted: Boolean
 
     title: String
     imageUrl: String
+    logo: String
     url: String
 
     created_at: DateTime

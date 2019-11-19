@@ -1,12 +1,14 @@
 type Product implements Base & Multilingual
 {
     sequence: String
+    uid : String
     deleted: Boolean
 
     title : String
     url : String
     links : [String]
-    imageUrl : String
+    logo : String
+    imageUrl: String
 
     created_at: DateTime
     updated_at: DateTime
