@@ -17,6 +17,14 @@ export class Config {
 
         public app : {
             port : any,
+        },
+
+        public minio: {
+            host : string,
+            port : number,
+            bucket : string,
+            key : string,
+            secret: string,
         }) {}
 }
 
@@ -30,6 +38,14 @@ const development = new Config(
     { //app
         port: process.env.PORT || 3000,
     },
+
+    { //minio
+        host: process.env.MINIO_HOST || "minio.digisus.ch",
+        port: parseInt(process.env.MINIO_PORT, 10) || 443,
+        bucket: process.env.MINIO_BUCKET || "oss-directory",
+        key: process.env.MINIO_KEY,
+        secret: process.env.MINIO_SECRET,
+    },
 );
 
 const production = new Config(
@@ -42,6 +58,14 @@ const production = new Config(
 
     { //app
         port: process.env.PORT || 5000,
+    },
+
+    { //minio
+        host: "minio.digisus.ch" || process.env.MINIO_HOST,
+        bucket: "oss-directory" || process.env.MINIO_BUCKET,
+        port: parseInt(process.env.MINIO_PORT, 10) || 80,
+        key: process.env.MINIO_KEY,
+        secret: process.env.MINIO_SECRET,
     },
 
 );

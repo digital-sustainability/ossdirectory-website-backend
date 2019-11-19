@@ -8,6 +8,7 @@ import { AngularModule } from './angular/angular.module';
 import { ConfigModule } from './config/config.module';
 import { Neo4jService } from './neo4j/neo4j.service';
 import { Neo4jModule } from './neo4j/neo4j.module';
+import { UploadModule } from './upload/upload.module';
 import { RssController } from './rss/rss.controller';
 
 @Module({
@@ -18,6 +19,7 @@ import { RssController } from './rss/rss.controller';
       AngularModule,
       ConfigModule,
       Neo4jModule,
+      UploadModule,
     ],
   controllers: [AppController, RssController],
   providers: [AppService, Neo4jService],
