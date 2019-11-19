@@ -8,7 +8,12 @@ type Product implements Base & Multilingual
     links : [String]
     imageUrl : String
 
+    created_at: DateTime
+    updated_at: DateTime
+
     translations: [ProductTranslation] @relation(name: "TRANSLATION", direction: "OUT")
+    successStories : [SuccessStory!] @relation(name : "REALISED_WITH", direction : "IN")
+    vendors : [Provides]
 }
 
 type ProductTranslation implements Base & Translation
@@ -43,4 +48,78 @@ type ProductCategoryTranslation implements Base & Translation @additionalLabels(
     description : String 
 
     language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}
+
+type Mutation {
+
+    CreateProduct(
+        title: String
+        imageUrl: String
+        url: String
+    )
+    : Product
+    @translations
+    @createdBy
+    @sequence
+
+    CreateProductTranslation(
+        title : String
+        description : String
+        claim : String
+    )
+    : ProductTranslation
+    @createdBy
+    @sequence
+
+    CreateProductCategory
+    : ProductCategory
+    @translations
+    @createdBy
+    @sequence
+
+    CreateProductCategoryTranslation(
+        title : String
+        description : String
+    )
+    : ProductCategoryTranslation
+    @translations
+    @createdBy
+    @sequence
+
+    UpdateProduct(
+        sequence: String!
+        title: String
+        imageUrl: String
+        url: String
+    )
+    : Product
+    @translations
+    @updatedBy
+
+    UpdateProductTranslation(
+        sequence: String!
+        title : String
+        description : String
+        claim : String
+    )
+    : ProductTranslation
+    @updatedBy
+
+    UpdateProductCategory(
+        sequence: String!
+    )
+    : ProductCategory
+    @translations
+    @updatedBy
+
+    UpdateProductCategoryTranslation(
+        sequence: String!
+        title : String
+        description : String
+    )
+    : ProductCategoryTranslation
+    @translations
+    @updatedBy
+
+
 }

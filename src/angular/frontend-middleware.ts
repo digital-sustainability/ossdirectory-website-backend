@@ -24,8 +24,9 @@ const allowedExt = [
 export class FrontendMiddleware implements NestMiddleware {
     use(req: Request, res: Response, next: Function) {
 
-        const { baseUrl, url, method } = req;
-        if (baseUrl.indexOf('graphql') === 1 || method === 'POST') {
+        const { baseUrl } = req;
+        const { url } = req;
+        if (baseUrl.indexOf('graphql') === 1 || baseUrl.indexOf('rss-feed') === 1) {
           // it starts with /api --> continue with execution
           next();
         } else if (allowedExt.filter(ext => baseUrl.indexOf(ext) > 0).length > 0) {

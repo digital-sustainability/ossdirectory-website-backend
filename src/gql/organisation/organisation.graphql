@@ -5,3 +5,15 @@ interface Organisation {
 
     address: Address @relation(name: "ADDRESS", direction: "OUT")
 }
+
+type OrganisationTranslation implements Base & Translation
+{
+    sequence: String
+    deleted: Boolean
+
+    title : String
+    description : String
+    claim : String
+
+    language : Language @relation(name: "LANGUAGE", direction : "OUT")
+}

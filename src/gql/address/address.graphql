@@ -34,6 +34,5 @@ type Mutation {
         state : String
         country : String) 
     : Address
-        @updatedBy
-    
+
 }

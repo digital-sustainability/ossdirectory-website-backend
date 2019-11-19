@@ -19,7 +19,7 @@ type Language implements Base
 }
 
 type Query {
-    findBySequence(sequence: String!): String
+    findBySequence(sequence: String!) : String
 }
 
 scalar DateTime
