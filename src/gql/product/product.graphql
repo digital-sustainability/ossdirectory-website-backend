@@ -64,6 +64,7 @@ type Mutation {
     @translations
     @createdBy
     @sequence
+    @authenticated
 
     CreateProductTranslation(
         title : String
@@ -73,21 +74,23 @@ type Mutation {
     : ProductTranslation
     @createdBy
     @sequence
+    @authenticated
 
     CreateProductCategory
     : ProductCategory
     @translations
     @createdBy
     @sequence
+    @authenticated
 
     CreateProductCategoryTranslation(
         title : String
         description : String
     )
     : ProductCategoryTranslation
-    @translations
     @createdBy
     @sequence
+    @authenticated
 
     UpdateProduct(
         sequence: String!
@@ -96,8 +99,8 @@ type Mutation {
         url: String
     )
     : Product
-    @translations
     @updatedBy
+    @authenticated
 
     UpdateProductTranslation(
         sequence: String!
@@ -107,13 +110,14 @@ type Mutation {
     )
     : ProductTranslation
     @updatedBy
+    @authenticated
 
     UpdateProductCategory(
         sequence: String!
     )
     : ProductCategory
-    @translations
     @updatedBy
+    @authenticated
 
     UpdateProductCategoryTranslation(
         sequence: String!
@@ -121,8 +125,8 @@ type Mutation {
         description : String
     )
     : ProductCategoryTranslation
-    @translations
     @updatedBy
+    @authenticated
 
 
 }

@@ -82,12 +82,14 @@ type Mutation {
     : ClientTranslation
     @createdBy
     @sequence
+    @authenticated
 
     CreateIndustry
     : Industry
     @translations
     @createdBy
     @sequence
+    @authenticated
 
     CreateIndustryTranslation(
         title : String
@@ -97,6 +99,7 @@ type Mutation {
     @translations
     @createdBy
     @sequence
+    @authenticated
 
     UpdateClient(
         sequence: String!
@@ -105,8 +108,8 @@ type Mutation {
         url: String
     )
     : Client
-    @translations
     @updatedBy
+    @authenticated
 
     UpdateClientTranslation(
         sequence: String!
@@ -116,13 +119,14 @@ type Mutation {
     )
     : ClientTranslation
     @updatedBy
+    @authenticated
 
     UpdateIndustry(
         sequence: String!
     )
     : Industry
-    @translations
     @updatedBy
+    @authenticated
 
     UpdateIndustryTranslation(
         sequence: String!
@@ -130,6 +134,6 @@ type Mutation {
         description : String
     )
     : IndustryTranslation
-    @translations
     @updatedBy
+    @authenticated
 }

@@ -22,6 +22,7 @@ type Mutation {
     : Address
         @createdBy
         @sequence
+        @authenticated
     
 
     UpdateAddress(
@@ -34,5 +35,7 @@ type Mutation {
         state : String
         country : String) 
     : Address
-
+        @updatedBy
+        @sequence
+        @authenticated
 }

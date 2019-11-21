@@ -44,6 +44,7 @@ type Mutation {
     @translations
     @createdBy
     @sequence
+    @authenticated
 
     CreateSuccessStoryTranslation(
         title : String
@@ -58,6 +59,7 @@ type Mutation {
     : SuccessStoryTranslation
     @createdBy
     @sequence
+    @authenticated
 
     UpdateSuccessStory(
         sequence: String!
@@ -65,8 +67,8 @@ type Mutation {
         url: String
     )
     : SuccessStory
-    @translations
     @updatedBy
+    @authenticated
 
     UpdateSuccessStoryTranslation(
         sequence: String!
@@ -81,4 +83,5 @@ type Mutation {
     )
     : SuccessStoryTranslation
     @updatedBy
+    @authenticated
 }
