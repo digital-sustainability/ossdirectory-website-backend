@@ -25,6 +25,7 @@ type ProductTranslation implements Base & Translation
 
     claim : String
     title : String
+    title_lower : String
     description : String 
 
     language : Language @relation(name: "LANGUAGE", direction : "OUT")

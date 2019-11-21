@@ -26,6 +26,7 @@ type ClientTranslation implements Base & Translation
     deleted: Boolean
 
     title : String
+    title_lower : String
     description : String
     claim : String
 

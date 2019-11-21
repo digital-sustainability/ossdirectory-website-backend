@@ -23,6 +23,7 @@ type SuccessStoryTranslation implements Base & Translation
     deleted: Boolean
 
     title : String
+    title_lower : String
     lead : String
     base : String
     goal : String 
