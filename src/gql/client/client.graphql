@@ -1,7 +1,7 @@
 type Client implements Base & Organisation
 {
     sequence: String
-    uid: String
+    uid: Int
     deleted: Boolean
 
     title: String

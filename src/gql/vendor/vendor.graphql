@@ -1,7 +1,7 @@
 type Vendor implements Base & Multilingual & Organisation 
 {
     sequence: String
-    uid: String
+    uid: Int
     deleted: Boolean
 
     title: String

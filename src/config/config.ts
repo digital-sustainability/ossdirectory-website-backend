@@ -42,7 +42,7 @@ const development = new Config(
     { //minio
         host: process.env.MINIO_HOST || "minio.digisus.ch",
         port: parseInt(process.env.MINIO_PORT, 10) || 443,
-        bucket: process.env.MINIO_BUCKET || "oss-directory",
+        bucket: process.env.MINIO_BUCKET || "ossdirectory",
         key: process.env.MINIO_KEY,
         secret: process.env.MINIO_SECRET,
     },

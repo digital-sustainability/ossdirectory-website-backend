@@ -2,6 +2,7 @@ type Address implements Base
 {
     sequence: String
     deleted: Boolean
+    uid: Int
 
     address : String
     address2 : String
@@ -36,6 +37,5 @@ type Mutation {
         country : String) 
     : Address
         @updatedBy
-        @sequence
         @authenticated
 }

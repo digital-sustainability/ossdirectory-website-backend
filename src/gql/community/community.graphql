@@ -2,6 +2,7 @@ type Community implements Base & Multilingual & Organisation
 {
     sequence: String
     deleted: Boolean
+    uid: Int
 
     title: String
     imageUrl: String

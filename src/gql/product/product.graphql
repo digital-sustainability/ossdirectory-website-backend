@@ -1,7 +1,7 @@
 type Product implements Base & Multilingual
 {
     sequence: String
-    uid : String
+    uid: Int
     deleted: Boolean
 
     title : String

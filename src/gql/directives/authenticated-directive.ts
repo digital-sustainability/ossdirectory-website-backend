@@ -19,7 +19,9 @@ export class AuthenticateDirective extends SchemaDirectiveVisitor {
                 throw new Error("not logged in");
             }
 
-            return await resolve.apply(null, [root, args, context, info]);
+            const result = await resolve.apply(null, [root, args, context, info]);
+
+            return result;
         };
     }
     // visitArgumentDefinition(argument: GraphQLArgument) {}

@@ -1,7 +1,7 @@
 type SuccessStory implements Base & Multilingual
 {
     sequence: String
-    uid: String
+    uid: Int
     deleted: Boolean
 
     logo : String
