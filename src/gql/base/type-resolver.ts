@@ -21,4 +21,9 @@ export class BaseResolver {
                 return list[0];
             });
     }
+
+    @Query()
+    async isLoggedIn() {
+      return true;
+    }
 }

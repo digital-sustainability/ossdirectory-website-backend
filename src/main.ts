@@ -13,7 +13,13 @@ async function bootstrap() {
 
     app.use(helmet()); // https://github.com/helmetjs/helmet#how-it-works
 
-    app.enableCors();
+    app.enableCors({
+      origin: '*',
+      credentials: true,
+      methods: ['GET', 'POST', 'OPTIONS'],
+    });
+
+   
 
     app.use(cookieParser());
     app.use(session({ 
@@ -26,13 +32,6 @@ async function bootstrap() {
 
     app.use(passport.initialize());
     app.use(passport.session());
-
-
-    app.use((req, res, next) => {
-      res.header("Access-Control-Allow-Credentials", "include");
-
-      next();
-    });
 
     // app.use(csurf({ cookie: true }));
 

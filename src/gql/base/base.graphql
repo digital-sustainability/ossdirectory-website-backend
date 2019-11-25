@@ -20,6 +20,7 @@ type Language implements Base
 
 type Query {
     findBySequence(sequence: String!) : String
+    isLoggedIn: Boolean @authenticated
 }
 
 scalar DateTime

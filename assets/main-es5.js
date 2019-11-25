@@ -117,7 +117,7 @@ module.exports = "<div class=\"form-group\">\n    <label for=\"file\">Choose Fil
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"item\" class=\"img-container\">\n  <div class=\"title-img\" (mouseenter)=\"mouseenter()\" (mouseleave)=\"mouseleave()\">\n    <img *ngIf=\"item.imageUrl && (!mouseover || !canEdit)\" src=\"http://minio.digisus.ch/oss-directory/{{item.imageUrl}}\" (error)=\"imageNotLoaded($event)\">\n    <img *ngIf=\"!mouseover || !canEdit\" src=\"{{item.url}}\" (error)=\"imageNotLoaded($event)\">\n    <div class=\"img-upload\">\n        <app-image-uploader ></app-image-uploader>\n    </div>\n    \n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"item\" class=\"img-container\">\n  <div class=\"title-img\" (mouseenter)=\"mouseenter()\" (mouseleave)=\"mouseleave()\">\n    <img *ngIf=\"!mouseover || !canEdit\" src=\"{{item.imageUrl}}\" (error)=\"imageNotLoaded($event)\">\n    <div class=\"img-upload\">\n        <app-image-uploader ></app-image-uploader>\n    </div>\n    \n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -3084,10 +3084,6 @@ var ImageComponent = /** @class */ (function () {
         var obs = this.apollo.sendQuery(query);
         obs.subscribe(function (res) {
             _this.item = res.data[_this.type][0];
-            // TODO: change this to item.imageUrl when the real imageurls are stored in the db
-            var re = /(?:\.([^.]+))?$/;
-            var ending = re.exec(_this.item.logo)[1];
-            _this.item.url = "http://minio.digisus.ch/oss-directory/" + _this.type.toLowerCase() + "_" + _this.item.uid + "." + ending;
             _this.config.set('uid', _this.item.uid);
         });
     };

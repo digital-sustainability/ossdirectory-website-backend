@@ -1,6 +1,7 @@
-import { NestMiddleware, Injectable } from "@nestjs/common";
+import { NestMiddleware, Injectable, CallHandler } from "@nestjs/common";
 import * as path from "path";
 import { Request, Response } from 'express';
+import { tap } from "rxjs/operators";
 
 /**
  * https://medium.com/@bo.vandersteene/use-nest-as-your-server-side-application-with-an-angular-frontend-540b0365bfa3
